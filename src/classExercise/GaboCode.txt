@@ -1,0 +1,9 @@
+Para abrirlo en modod incognito y mazimizar pantalla:
+        WebDriver driver;
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("incognito");
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        driver = new ChromeDriver(capabilities);
+        driver.manage().window().maximize();
+Eso ayuda en que no esten guardadas cosas como lo del estado

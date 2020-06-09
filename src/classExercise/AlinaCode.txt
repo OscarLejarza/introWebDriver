@@ -1,0 +1,20 @@
+private static void seleccionarEstado(String nombreEstado) {
+
+        System.out.println("breakpoint instruction.");
+        //WebElement seleccionaEstadoDropdown = driver.findElement(By.id("marca_nocliente_chosen"));
+        WebElement seleccionaEstadoDropdown = driver.findElement(By.cssSelector(".modal .chosen-single"));
+        if(seleccionaEstadoDropdown.isDisplayed()) {
+            seleccionaEstadoDropdown.click();
+        } else {
+            System.out.println("Fallo el modal");
+            System.exit(-1);
+        }
+        WebElement inputEstado = driver.findElement(By.cssSelector(".chosen-search input"));
+        inputEstado.sendKeys(nombreEstado);
+        WebElement opcionEstado = driver.findElement(By.cssSelector(".chosen-results li"));
+        opcionEstado.click();
+        WebElement botonEntrar = driver.findElement(By.id("entrarPerfilador"));
+        botonEntrar.click();
+
+        //.chosen-results li[data-option-array-index='15']
+    }

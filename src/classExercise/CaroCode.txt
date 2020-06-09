@@ -1,0 +1,5 @@
+nombreCelular: css="[ng-bind='device.nombreComercial']"
+
+precioFinal: css=".telcel-mosaico-equipos-precio.ng-binding"
+
+capacidadCelular: css=".telcel-mosaico-equipos-capacidad-numero.ng-binding"
