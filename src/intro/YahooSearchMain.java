@@ -8,26 +8,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class YahooSearchMain {
-	
-	
+
 
 	public static void main(String[] args) {
 		//INICIALIZACION DE SYSTEM.SETPROPERTY()
-		
-	    WebDriver driver;
+		WebDriver driver;
 		driver = new ChromeDriver(); // aqui se utiliza el browser que yo elija
 		driver.manage().timeouts().implicitlyWait(30,  TimeUnit.SECONDS);
-		driver.get("http://www.yahoo.com");
-		WebElement searchBox = driver.findElement(By.id("uh-search-box"));
-		WebElement searchButton = driver.findElement(By.id("uh-search-button"));
+		driver.get("http://www.yahoo.com"); //navega a la url que le indiquemos
+		WebElement searchBox = driver.findElement(By.id("header-search-input"));
+		WebElement searchButton = driver.findElement(By.id("header-desktop-search-button"));
 		
 		searchBox.clear();
 		searchBox.sendKeys("Selenium");
 		searchButton.click();
 		
-		WebElement seleniumLink = driver.findElement(By.linkText("Selenium - Web Browser Automation"));
+		WebElement seleniumLink = driver.findElement(By.xpath("//h3[.='Selenium' and ./following-siblings: :div[contains(.,'selenium.dev')] ] /a"));
 		seleniumLink.click();
 		
 		ArrayList<String> windowIds = new ArrayList<String>(driver.getWindowHandles());
@@ -37,7 +36,7 @@ public class YahooSearchMain {
 			driver.switchTo().window(windowId);
 		}
 		
-		WebElement downloadLink = driver.findElement(By.linkText("Download"));
+		WebElement downloadLink = driver.findElement(By.linkText("Downloads"));
 		downloadLink.click();
 		
 		driver.close();

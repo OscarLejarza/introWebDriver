@@ -81,7 +81,7 @@ public class YahooSearchMethods {
 	}
 	
 	private static void closeBrowser() {
-		driver.close();
+		driver.quit(); // close = Solo cierra una ventana, quit = Cierra todos los navegadores que se abrieron
 		
 	}
 
