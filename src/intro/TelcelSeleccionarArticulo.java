@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class TelcelSeleccionarArticulo {
 
     static WebDriver driver;
@@ -25,7 +27,7 @@ public class TelcelSeleccionarArticulo {
 
     private static void navegarSitio(String url) {
         driver = new ChromeDriver();
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.navigate().to(url);
     }
 
@@ -60,6 +62,20 @@ public class TelcelSeleccionarArticulo {
     }
 
     private static void seleccionarEstado(String nombreEstado) {
+        System.out.println("breakpoint instruction.");
+        WebElement seleccionaEstadoDropdown = driver.findElement(By.cssSelector(".modal .chosen-single"));
+        if (seleccionaEstadoDropdown.isDisplayed()){
+            seleccionaEstadoDropdown.click();
+        } else {
+            System.out.println("Falló el modal");
+            System.exit(-1);
+        }
+        WebElement inputEstado = driver.findElement(By.cssSelector(".chosen-search input"));
+        inputEstado.sendKeys(jalisco);
+        WebElement opcionEstado = driver.findElement(By.cssSelector(".chosen-results li"));
+        opcionEstado.click();
+        WebElement botonEntrar = driver.findElement(By.id("entrarPerfilador"));
+        botonEntrar.click();
     }
 
     private static void verificarPaginaResultados() {
