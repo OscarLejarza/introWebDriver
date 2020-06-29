@@ -14,12 +14,14 @@ public class TelcelSeleccionarArticulo {
         navegarSitio("https://www.telcel.com");
         verificarLandingPage();
         listarTelefonos();
+        seleccionarEstado("Jalisco");
         verificarPaginaResultados();
         Celular primerCelular = capturarDatosCelular(1);
         seleccionarCelular(1);
         validarDatosCelular(primerCelular);
 
     }
+
 
     private static void navegarSitio(String url) {
         driver = new ChromeDriver();
@@ -48,12 +50,16 @@ public class TelcelSeleccionarArticulo {
 
         // campoBusqueda
 
-
-
-
     }
 
     private static void listarTelefonos() {
+        WebElement tiendaEnLinea = driver.findElement(By.cssSelector("[data-nombreboton='Tienda en linea superior']"));
+        tiendaEnLinea.click();
+        WebElement linkTelefonosCelulares = driver.findElement(By.cssSelector(".shortcut-container [data-nombreboton='Telefonos y smartphones']"));
+        linkTelefonosCelulares.click();
+    }
+
+    private static void seleccionarEstado(String nombreEstado) {
     }
 
     private static void verificarPaginaResultados() {
