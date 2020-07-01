@@ -7,6 +7,13 @@ public class Celular {
     double precio;
     int capacidadGb;
 
+    public Celular(String marcaModelo, String nombre, double precio, int capacidadGb) {
+        this.marcaModelo = marcaModelo;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.capacidadGb = capacidadGb;
+    }
+
     public String getMarcaModelo() {
         return marcaModelo;
     }
