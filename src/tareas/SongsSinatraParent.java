@@ -88,24 +88,24 @@ public class SongsSinatraParent {
     }
 
     public static void validarSongsPage() {
-
-        WebElement songsTitle = driver.findElement(By.cssSelector("Section h1"));
-       String currentUrl = driver.getCurrentUrl();
-       WebElement songsLink = driver.findElement(By.cssSelector("[href='/songs']"));
-       String currentClass = songsLink.getAttribute("class");
+        WebElement songsTitle = driver.findElement(By.cssSelector("section h1"));
+        String currentUrl = driver.getCurrentUrl();
+        WebElement songsLink = driver.findElement(By.cssSelector("[href='/songs']"));
+        String currentClass = songsLink.getAttribute("class");
         List<WebElement> listaCanciones = driver.findElements(By.cssSelector("#songs li"));
 
-        if (songsTitle.isDisplayed() &&
-          currentUrl.endsWith("songs") &&
-          currentClass.equals("current") &&
-            listaCanciones.size() > 0) {
-          System.out.println("Si estoy en la pagina de songs");
-        } else {
-           System.out.println("No estoy en la pagina de songs");
-           cerrarBrowser();
+        if(songsTitle.isDisplayed()  &&
+                currentUrl.endsWith("songs") &&
+                currentClass.equals("current") &&
+                listaCanciones.size() > 0) {
+            System.out.println("Si estoy en la pagina de songs");
+        }
+        else {
+            System.out.println("No estoy en la pagina de songs.");
+            cerrarBrowser();
 
-           System.exit(-1);
-       }
+            System.exit(-1);
+        }
     }
 
     public static void cerrarBrowser() {
