@@ -67,8 +67,8 @@ public class SongsSinatraParent {
 //  mensajeBienvenida: id="flash"
 //  linkLogout: href="/logout"
 
-        WebElement homeBtn = driver.findElement(By.cssSelector("current"));
-        homeBtn.click();
+        WebElement homeBtn = driver.findElement(By.cssSelector(".current"));
+//        homeBtn.click();
 
         WebElement msgBienvenida = driver.findElement(By.cssSelector(".flash"));
         if (msgBienvenida.isDisplayed()) {
@@ -85,6 +85,7 @@ public class SongsSinatraParent {
             System.out.println("El link de logout no aparece desplegado");
             System.exit(-1);
         }
+
     }
 
     public static void validarSongsPage() {

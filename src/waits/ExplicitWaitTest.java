@@ -20,7 +20,7 @@ public class ExplicitWaitTest {
 	public static void main(String[] args) {
 
 		WebDriver driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		driver.get("http://songs-by-sinatra.herokuapp.com");
 
@@ -29,7 +29,7 @@ public class ExplicitWaitTest {
 		WebElement loginLink = wait
 								.until(
 										ExpectedConditions
-										.presenceOfElementLocated(
+										.visibilityOfElementLocated(
 												By.xpath("//a[@href='/login']")
 										)
 								);
@@ -37,7 +37,7 @@ public class ExplicitWaitTest {
 		WebElement usernameField = wait
 								.until(
 										ExpectedConditions
-										.presenceOfElementLocated(
+										.elementToBeClickable(
 												By.id("username")
 										)
 								);
@@ -45,7 +45,7 @@ public class ExplicitWaitTest {
 		WebElement passwordField = wait
 								.until(
 										ExpectedConditions
-										.presenceOfElementLocated(
+										.elementToBeClickable(
 												By.id("password")
 										)
 								);
@@ -53,7 +53,7 @@ public class ExplicitWaitTest {
 		WebElement loginButton = wait
 								.until(
 										ExpectedConditions
-										.presenceOfElementLocated(
+										.elementToBeClickable(
 												By.xpath("//input[@value = 'Log In']")
 										)
 								);
@@ -65,7 +65,7 @@ public class ExplicitWaitTest {
 		WebElement loggedInMessage = wait
 									.until(
 										ExpectedConditions
-											.presenceOfElementLocated(
+											.visibilityOfElementLocated(
 												By.id("flash")
 											)
 										);

@@ -6,8 +6,8 @@ public class LoginSongsBySinatra extends SongsSinatraParent {
         navegar("https://evening-bastion-49392.herokuapp.com/");
         validarHomePage();
         realizarLoginCorrecto("frank", "sinatra");
-        validarSongsPage();
         validarMensajeBienvenida("You are now logged in as frank");
+        validarSongsPage();
         cerrarBrowser();
     }
 
