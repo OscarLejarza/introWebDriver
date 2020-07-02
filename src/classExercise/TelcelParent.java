@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -11,20 +14,25 @@ import java.util.concurrent.TimeUnit;
 public class TelcelParent {
 
     static WebDriver driver;
+    static WebDriverWait wait;
 
     public static void navegarSitio(String url) {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, 30);
         driver.navigate().to(url);
     }
 
     public static void verificarLandingPage() {
         // verificar que existen estos elementos
         // logoTelcel:
-        WebElement logoTelcel = driver.findElement(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']"));
-        WebElement tiendaEnLinea = driver.findElement(By.cssSelector("[data-nombreboton='Tienda en linea superior']"));
-        WebElement campoBusqueda = driver.findElement(By.cssSelector("#buscador-menu-input"));
-        if (logoTelcel.isDisplayed() &&
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-nombreboton='Tienda en linea superior']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#buscador-menu-input")));
+//        WebElement logoTelcel = driver.findElement(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']"));
+//        WebElement tiendaEnLinea = driver.findElement(By.cssSelector("[data-nombreboton='Tienda en linea superior']"));
+//        WebElement campoBusqueda = driver.findElement(By.cssSelector("#buscador-menu-input"));
+/*        if (logoTelcel.isDisplayed() &&
                 tiendaEnLinea.isDisplayed() &&
                 campoBusqueda.isDisplayed() && campoBusqueda.isEnabled()){
             //       if (driver.findElement(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']")).isDisplayed() &&
@@ -34,9 +42,8 @@ public class TelcelParent {
         } else {
             System.out.println("No cargo la pagina");
             System.exit(-1); // Para indicar que es un error, si aparece 0 es que no hay error
-        }
+        }*/
         // linkTiendaEnLinea
-
         // campoBusqueda
 
     }
@@ -50,14 +57,16 @@ public class TelcelParent {
 
     public static void seleccionarEstado(String nombreEstado) {
         System.out.println("breakpoint instruction.");
-        WebElement seleccionaEstadoDropdown = driver.findElement(By.cssSelector(".modal .chosen-single"));
-        if (seleccionaEstadoDropdown.isDisplayed()){
+        WebElement seleccionaEstadoDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".modal .chosen-single")));
+        seleccionaEstadoDropdown.click();
+//        WebElement seleccionaEstadoDropdown = driver.findElement(By.cssSelector(".modal .chosen-single"));
+/*        if (seleccionaEstadoDropdown.isDisplayed()){
             seleccionaEstadoDropdown.click();
         } else {
             System.out.println("Falló el modal");
             System.exit(-1);
-        }
-        WebElement inputEstado = driver.findElement(By.cssSelector(".chosen-search input"));
+        }*/
+        WebElement inputEstado = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".chosen-search input")));
         inputEstado.sendKeys(nombreEstado);
         WebElement opcionEstado = driver.findElement(By.cssSelector(".chosen-results li"));
         opcionEstado.click();
@@ -143,4 +152,8 @@ public class TelcelParent {
         else
             System.out.println("La capacidad no coincide");
     }
+
+/*    public static void cerrarBrowser() {
+        driver.quit();
+    }*/
 }
