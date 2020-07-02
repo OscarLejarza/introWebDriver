@@ -66,9 +66,9 @@ public class TelcelParent {
 
         String nombreEquipo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".telcel-mosaico-equipos-nombre-equipo"))).getText();
 
-        String precioEquipo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".telcel-mosaico-equipos-precio")))
-                .getText().replace(",", "").replace("$", "");
-
+        String precioEquipo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".telcel-mosaico-equipos-precio"))).getText();
+        precioEquipo = precioEquipo.replace(",", "");
+        precioEquipo = precioEquipo.replace("$", "");
         double pe = Double.parseDouble(precioEquipo);
 
         WebElement textoCapacidad = driver.findElement(By.cssSelector(".telcel-mosaico-equipos-capacidad-numero"));
