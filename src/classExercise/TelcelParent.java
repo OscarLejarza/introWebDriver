@@ -29,22 +29,6 @@ public class TelcelParent {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-nombreboton='Tienda en linea superior']")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#buscador-menu-input")));
-//        WebElement logoTelcel = driver.findElement(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']"));
-//        WebElement tiendaEnLinea = driver.findElement(By.cssSelector("[data-nombreboton='Tienda en linea superior']"));
-//        WebElement campoBusqueda = driver.findElement(By.cssSelector("#buscador-menu-input"));
-/*        if (logoTelcel.isDisplayed() &&
-                tiendaEnLinea.isDisplayed() &&
-                campoBusqueda.isDisplayed() && campoBusqueda.isEnabled()){
-            //       if (driver.findElement(By.cssSelector("[src='/content/dam/htmls/img/icons/logo-telcel.svg']")).isDisplayed() &&
-            //               driver.findElement(By.cssSelector("[data-nombreboton='Tienda en linea superior']")).isDisplayed() &&
-            //               driver.findElement(By.cssSelector("#buscador-menu-input")).isDisplayed()) {
-            System.out.println("Si cargo la pagina principal de telcel");
-        } else {
-            System.out.println("No cargo la pagina");
-            System.exit(-1); // Para indicar que es un error, si aparece 0 es que no hay error
-        }*/
-        // linkTiendaEnLinea
-        // campoBusqueda
 
     }
 
@@ -59,13 +43,7 @@ public class TelcelParent {
         System.out.println("breakpoint instruction.");
         WebElement seleccionaEstadoDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".modal .chosen-single")));
         seleccionaEstadoDropdown.click();
-//        WebElement seleccionaEstadoDropdown = driver.findElement(By.cssSelector(".modal .chosen-single"));
-/*        if (seleccionaEstadoDropdown.isDisplayed()){
-            seleccionaEstadoDropdown.click();
-        } else {
-            System.out.println("Falló el modal");
-            System.exit(-1);
-        }*/
+
         WebElement inputEstado = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".chosen-search input")));
         inputEstado.sendKeys(nombreEstado);
         WebElement opcionEstado = driver.findElement(By.cssSelector(".chosen-results li"));
@@ -83,16 +61,14 @@ public class TelcelParent {
     }
 
     public static Celular capturarDatosCelular(int i) {
-        WebElement textoMarcaModelo = driver.findElement(By.cssSelector(".telcel-mosaico-equipos-marca"));
-        String mm = textoMarcaModelo.getText();
 
-        WebElement textoNombre = driver.findElement(By.cssSelector(".telcel-mosaico-equipos-nombre-equipo"));
-        String nombreEquipo = textoNombre.getText();
+        String mm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".telcel-mosaico-equipos-marca"))).getText();
 
-        WebElement textoPrecio = driver.findElement(By.cssSelector(".telcel-mosaico-equipos-precio"));
-        String precioEquipo = textoPrecio.getText();
-        precioEquipo = precioEquipo.replace(",", "");
-        precioEquipo = precioEquipo.replace("$", "");
+        String nombreEquipo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".telcel-mosaico-equipos-nombre-equipo"))).getText();
+
+        String precioEquipo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".telcel-mosaico-equipos-precio")))
+                .getText().replace(",", "").replace("$", "");
+
         double pe = Double.parseDouble(precioEquipo);
 
         WebElement textoCapacidad = driver.findElement(By.cssSelector(".telcel-mosaico-equipos-capacidad-numero"));
